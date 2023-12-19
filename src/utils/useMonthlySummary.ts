@@ -1,5 +1,3 @@
-import { useTheme } from "@react-navigation/native";
-import { CustomTheme } from "../attributes/theme";
 import { useTransactionsSelector } from "../store/hooks";
 import { useEffect, useState } from "react";
 
@@ -18,7 +16,6 @@ const useMonthlySummary = () => {
         (trans) => new Date(trans.date).getMonth() === new Date().getMonth()
       )
       .map((transaction) => {
-        console.log(transaction.amount);
         if (transaction.transactionType === "income") {
           income += transaction.amount;
         } else {

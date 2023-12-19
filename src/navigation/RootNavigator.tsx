@@ -1,6 +1,6 @@
 import React from 'react';
-import { NativeStackScreenProps, createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useNavigation, useTheme } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useTheme } from '@react-navigation/native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import ROUTES from './routes';
@@ -41,7 +41,6 @@ export default function RootNavigator() {
           headerTitle: 'Monthly Transactions Summary',
           headerTintColor: colors.primary,
           presentation: 'modal',
-          statusBarStyle: 'light',
         }}
       />
       <Stack.Screen
@@ -51,7 +50,7 @@ export default function RootNavigator() {
           headerTitle: 'Create Transaction',
           headerTintColor: colors.primary,
           presentation: 'modal',
-          statusBarStyle: 'light',
+          headerBackVisible: false,
           headerRight: () => (
             <Ionicons
               onPress={navigation.goBack}

@@ -1,18 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import { useAppDispatch, useTransactionsSelector } from '../../store/hooks';
-import { StyledText, TransactionList } from '../../components';
-import { Transaction, TransactionType, removeTransaction } from '../../store/transactionsSlice';
-import Animated, { FadeInRight } from 'react-native-reanimated';
+import { StyledText } from '../../components';
 import styles from './styles';
-import DropDownPicker from 'react-native-dropdown-picker';
-import { TransactionsTypeArray } from '../CreateTransaction';
 import { View } from 'react-native';
 import useMonthlySummary from '../../utils/useMonthlySummary';
 
 
 function TransactionsSummary() {
-  const { transactionsEntities } = useTransactionsSelector();
   const { monthlyExpenseSummary, monthlyIncomeSummary } = useMonthlySummary()
 
   return (
