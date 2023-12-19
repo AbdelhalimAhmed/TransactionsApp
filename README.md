@@ -44,9 +44,17 @@ root-project/
   |- navigation -> Contains all configuration of navigation.
   |- screens -> Contains all pages/screens with their logic.
   |- store -> Contains all Slices or reducers for managing state.
-  |- utils -> Contains all utility functions like "customHooks"
+  |- utils -> Contains all utility functions like "useMonthlySummary"
 ```
 
 # Demo
+
+
+
+https://github.com/AbdelhalimAhmed/TransactionsApp/assets/16348512/74ea7b58-924d-441f-961e-4875db3a3adb
+
+
+https://github.com/AbdelhalimAhmed/TransactionsApp/assets/16348512/3f88845b-20cb-4ecb-b86d-68562faac016
+
 
 
