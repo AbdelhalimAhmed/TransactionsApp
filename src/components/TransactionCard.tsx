@@ -85,15 +85,7 @@ const TransactionCard: React.FC<TransactionCardProps> = ({
               Category: <Text style={{ color: colors.primary }}>{transaction.category}</Text>
             </StyledText>)}
           <StyledText size='s' weight='medium'>
-            Date: <Text style={{ color: colors.primary }}>{Intl.DateTimeFormat('en-GB', {
-              weekday: 'long',
-              year: 'numeric',
-              month: 'short',
-              day: 'numeric',
-              hour: '2-digit',
-              minute: '2-digit',
-              timeZoneName: 'shortGeneric'
-            }).format(new Date(transaction.date))}</Text>
+            Date: <Text style={{ color: colors.primary }}>{transaction.date}</Text>
           </StyledText>
           <StyledText size='s' weight='medium'>
             Amount: <Text style={{ color: colors.primary }}>{transaction.amount} $</Text>

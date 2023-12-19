@@ -19,6 +19,7 @@ type FormData = {
   transactionType: TransactionType;
   description: string;
   date: string;
+  category: string;
 }
 
 const AnimatedButton = Animated.createAnimatedComponent(Button);
@@ -53,6 +54,8 @@ function CreateTransaction() {
   const { goBack } = useNavigation()
 
   const [open, setOpen] = useState(false);
+  const [showPicker, setShowPicker] = useState(false)
+  const showPickerStatus = showPicker || Platform.OS === 'ios'
 
   const onSubmit = (data: FormData) => {
     //used timestamp here as a unique key, we could consider "id generator" algorithm as well.
@@ -143,14 +146,18 @@ function CreateTransaction() {
                 label='Date'
                 error={error?.message}
               >
-                <DateTimePicker
+                {showPickerStatus ? <DateTimePicker
                   value={value ?? new Date()}
                   mode={'date'}
-                  onChange={(_, selectedDate) => {
+                  onChange={(event, selectedDate) => {
+                    if (event.type === "dismissed" || event.type === "set") {
+                      setShowPicker(false);
+                      return
+                    }
                     onChange(selectedDate)
                   }}
                   style={styles.dateInput}
-                />
+                /> : <StyledText onPress={() => setShowPicker(true)}>{value.toLocaleDateString()}</StyledText>}
               </Input>
 
             )
