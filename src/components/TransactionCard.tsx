@@ -1,16 +1,16 @@
 import React, { useRef } from 'react';
 import { Text, StyleSheet, View, Pressable, Animated } from 'react-native';
 import ReAnimated, { FadeInDown, SlideOutLeft } from 'react-native-reanimated';
+import { Swipeable, GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { useCurrentTheme } from '../utils/customHooks';
 import { SPACING, BORDER_RADIUS, FONT_SIZE, COLORS } from '../attributes';
-import { Symptom } from '../store/symptomsSlice';
+import { Transaction, transactionsType } from '../store/transactionsSlice';
 import StyledText from './StyledText';
-import { Swipeable, GestureHandlerRootView } from 'react-native-gesture-handler';
 
-interface SymptomCardProps {
-  symptom: Symptom;
-  onDeleteSymptom: () => void
+interface TransactionCardProps {
+  transaction: Transaction;
+  onDeleteTransaction: () => void
 }
 type AnimatedInterpolation = ReturnType<Animated.Value['interpolate']>;
 type CallbackFn = () => void;
@@ -53,19 +53,18 @@ const renderRightActions = (
   </View>
 );
 
-const SymptomCard: React.FC<SymptomCardProps> = ({
-  symptom,
-  onDeleteSymptom,
+const TransactionCard: React.FC<TransactionCardProps> = ({
+  transaction,
+  onDeleteTransaction,
 }) => {
   const { colors } = useCurrentTheme();
   const swipeCardRef = useRef<Swipeable>(null);
-
-  const handleDeleteSymptom = () => {
+  const handleDeleteTransaction = () => {
     swipeCardRef?.current?.close();
-    onDeleteSymptom()
+    onDeleteTransaction()
   };
 
-  const handleEditSymptom = () => {
+  const handleEditTransaction = () => {
     swipeCardRef?.current?.close();
   };
 
@@ -76,17 +75,17 @@ const SymptomCard: React.FC<SymptomCardProps> = ({
         friction={2}
         rightThreshold={30}
         renderRightActions={(progress: AnimatedInterpolation) =>
-          renderRightActions(progress, handleDeleteSymptom, handleEditSymptom)
+          renderRightActions(progress, handleDeleteTransaction, handleEditTransaction)
         }
       >
         <ReAnimated.View
-          key={symptom.id}
-          style={[styles.card, { backgroundColor: colors.symptomCardBg }]}
+          key={transaction.id}
+          style={[styles.card, { backgroundColor: colors.transactionCardBg }]}
           entering={FadeInDown.delay(300)}
           exiting={SlideOutLeft.delay(300)}>
 
           <StyledText weight='bold' numberOfLines={3}>
-            {symptom.name}
+            {transactionsType[transaction.transactionType]}
           </StyledText>
           <StyledText size='s' weight='medium'>
             Date: <Text style={{ color: colors.primary }}>{Intl.DateTimeFormat('en-GB', {
@@ -97,13 +96,13 @@ const SymptomCard: React.FC<SymptomCardProps> = ({
               hour: '2-digit',
               minute: '2-digit',
               timeZoneName: 'shortGeneric'
-            }).format(new Date(symptom.date))}</Text>
+            }).format(new Date(transaction.date))}</Text>
           </StyledText>
           <StyledText size='s' weight='medium'>
-            Severity: <Text style={{ color: colors.primary }}>{symptom.severity}</Text>
+            Amount: <Text style={{ color: colors.primary }}>{transaction.amount} $</Text>
           </StyledText>
           <StyledText size='s' color='grey' >
-            {symptom.description}
+            {transaction.description}
           </StyledText>
         </ReAnimated.View>
       </Swipeable>
@@ -144,4 +143,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default SymptomCard;
+export default TransactionCard;

@@ -1,8 +1,8 @@
 import { useSelector, useDispatch, DispatchProp } from "react-redux";
 import { RootState, AppDispatch } from "./index";
 
-export const useSymptomsSelector = () =>
-  useSelector((state: RootState) => state.symptoms);
+export const useTransactionsSelector = () =>
+  useSelector((state: RootState) => state.transactions);
 
 // type TypedDispatch = DispatchProp<AppDispatch >
 export const useAppDispatch = () => useDispatch<AppDispatch>();

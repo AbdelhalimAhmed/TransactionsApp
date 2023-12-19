@@ -16,7 +16,7 @@ export const THEME = {
     colors: {
       ...DefaultTheme.colors,
       ...COLORS,
-      symptomCardBg: "#FFF",
+      transactionCardBg: "#FFF",
     },
   },
   darkTheme: {
@@ -24,14 +24,14 @@ export const THEME = {
     colors: {
       ...DarkTheme.colors,
       ...COLORS,
-      symptomCardBg: "rgb(18, 18, 18)",
+      transactionCardBg: "rgb(18, 18, 18)",
     },
   },
 };
 
 export type CustomTheme = {
   colors: {
-    symptomCardBg: string;
+    transactionCardBg: string;
   } & typeof COLORS;
 } & Theme;
 export type Color = keyof CustomTheme["colors"];

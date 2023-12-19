@@ -1,6 +1,6 @@
 enum ROUTES {
-  SYMPTOMS = "Symptoms",
-  CREATE_SYMPTOM = "CreateSymptom",
+  SYMPTOMS = "Transactions",
+  CREATE_SYMPTOM = "CreateTransaction",
 }
 
 export default ROUTES;

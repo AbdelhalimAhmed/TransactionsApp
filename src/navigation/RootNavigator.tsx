@@ -3,14 +3,14 @@ import { NativeStackScreenProps, createNativeStackNavigator } from '@react-navig
 import { useNavigation, useTheme } from '@react-navigation/native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-import Symptoms from '../screens/Symptoms';
-import CreateSymptom from '../screens/CreateSymptom';
+import Transactions from '../screens/Transactions';
+import CreateTransaction from '../screens/CreateTransaction';
 import ROUTES from './routes';
 
 
 export type RootStackParamList = {
-  Symptoms: undefined;
-  CreateSymptom: undefined;
+  Transactions: undefined;
+  CreateTransaction: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -21,17 +21,17 @@ export default function RootNavigator() {
     <Stack.Navigator initialRouteName={ROUTES.SYMPTOMS}>
       <Stack.Screen
         name={ROUTES.SYMPTOMS}
-        component={Symptoms}
+        component={Transactions}
         options={{
-          headerTitle: 'Your Symptoms',
+          headerTitle: 'Your Transactions',
           headerTintColor: colors.primary
         }}
       />
       <Stack.Screen
         name={ROUTES.CREATE_SYMPTOM}
-        component={CreateSymptom}
+        component={CreateTransaction}
         options={({ navigation }) => ({
-          headerTitle: 'Create Symptom',
+          headerTitle: 'Create Transaction',
           headerTintColor: colors.primary,
           presentation: 'modal',
           statusBarStyle: 'light',

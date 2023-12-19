@@ -11,19 +11,19 @@ import {
   REGISTER,
 } from "redux-persist";
 
-import symptomsReducer from "./symptomsSlice";
+import transactionsReducer from "./transactionsSlice";
 
 const persistConfig = {
   key: "root",
   storage: AsyncStorage,
-  whitelist: ["symptomsEntities"],
+  whitelist: ["transactionsEntities"],
 };
 
-const persistedReducer = persistReducer(persistConfig, symptomsReducer);
+const persistedReducer = persistReducer(persistConfig, transactionsReducer);
 
 export const store = configureStore({
   reducer: {
-    symptoms: persistedReducer,
+    transactions: persistedReducer,
   },
   middleware: (getDefaultMiddleware: any) =>
     getDefaultMiddleware({
