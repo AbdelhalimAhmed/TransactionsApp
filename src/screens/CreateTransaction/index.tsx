@@ -27,6 +27,7 @@ const schema = yup.object({
   amount: yup.number().positive().required(),
   date: yup.date().required(),
   transactionType: yup.string().required(),
+  category: yup.string().required(),
   description: yup.string().max(400),
 }).required();
 
@@ -42,6 +43,7 @@ function CreateTransaction() {
       amount: 0,
       description: '',
       transactionType: '',
+      category: '',
       date: new Date()
     },
     resolver: yupResolver(schema)
@@ -100,7 +102,23 @@ function CreateTransaction() {
           name="transactionType"
         />
 
-        {/* NAME INPUT */}
+        {/* CATEGORY INPUT */}
+        <Controller
+          control={control}
+          render={({ field: { onChange, onBlur, value }, fieldState: { error } }) => (
+            <Input
+              label='Category'
+              placeholder="transaction category"
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              error={error?.message}
+            />
+          )}
+          name="category"
+        />
+
+        {/* AMOUNT INPUT */}
         <Controller
           control={control}
           render={({ field: { onChange, onBlur, value }, fieldState: { error } }) => (

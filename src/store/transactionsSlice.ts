@@ -7,6 +7,7 @@ export type Transaction = {
   transactionType: TransactionType;
   description: string;
   date: string;
+  category: string;
 };
 
 export interface TransactionsState {

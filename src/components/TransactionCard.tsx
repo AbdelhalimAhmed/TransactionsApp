@@ -45,11 +45,9 @@ const renderRightAction = (
 const renderRightActions = (
   progress: AnimatedInterpolation,
   onDelete: CallbackFn,
-  onEdit: CallbackFn
 ) => (
   <View style={styles.actionButtons}>
-    {renderRightAction('Edit', COLORS.silver, 160, progress, onEdit)}
-    {renderRightAction('Delete', COLORS.red, 80, progress, onDelete)}
+    {renderRightAction('Delete', COLORS.red, 100, progress, onDelete)}
   </View>
 );
 
@@ -64,12 +62,6 @@ const TransactionCard: React.FC<TransactionCardProps> = ({
     onDeleteTransaction()
   };
 
-  console.log({ ss: new Date(transaction.date).getMonth(), www: new Date().getMonth() })
-
-  const handleEditTransaction = () => {
-    swipeCardRef?.current?.close();
-  };
-
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <Swipeable
@@ -77,7 +69,7 @@ const TransactionCard: React.FC<TransactionCardProps> = ({
         friction={2}
         rightThreshold={30}
         renderRightActions={(progress: AnimatedInterpolation) =>
-          renderRightActions(progress, handleDeleteTransaction, handleEditTransaction)
+          renderRightActions(progress, handleDeleteTransaction)
         }
       >
         <ReAnimated.View
@@ -85,10 +77,13 @@ const TransactionCard: React.FC<TransactionCardProps> = ({
           style={[styles.card, { backgroundColor: colors.transactionCardBg }]}
           entering={FadeInDown.delay(300)}
           exiting={SlideOutLeft.delay(300)}>
-
           <StyledText weight='bold' numberOfLines={3}>
             {transactionsType[transaction.transactionType]}
           </StyledText>
+          {transaction.category && (
+            <StyledText size='s' weight='medium'>
+              Category: <Text style={{ color: colors.primary }}>{transaction.category}</Text>
+            </StyledText>)}
           <StyledText size='s' weight='medium'>
             Date: <Text style={{ color: colors.primary }}>{Intl.DateTimeFormat('en-GB', {
               weekday: 'long',
@@ -131,7 +126,7 @@ const styles = StyleSheet.create({
   },
   actionButtons: {
     flexDirection: 'row',
-    width: 160 + SPACING.m,
+    width: 100 + SPACING.m,
     borderTopRightRadius: BORDER_RADIUS.m,
     borderBottomRightRadius: BORDER_RADIUS.m,
     overflow: 'hidden',
