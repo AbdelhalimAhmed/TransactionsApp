@@ -7,7 +7,7 @@ import {
   FONT_SIZE,
   FONT_WEIGHT,
 } from '../attributes';
-import { useCurrentTheme } from '../utils/customHooks';
+import useCurrentTheme from '../utils/useCurrentTheme';
 
 type StyledTextProps = TextProps & {
   size?: FontSize;

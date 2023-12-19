@@ -8,7 +8,7 @@ import * as yup from "yup";
 import DropDownPicker from 'react-native-dropdown-picker';
 
 import styles from './styles';
-import { useCurrentTheme } from '../../utils/customHooks';
+import useCurrentTheme from '../../utils/useCurrentTheme';
 import { Input, StyledText } from '../../components';
 import Animated, { FadeInDown, FadeInRight } from 'react-native-reanimated';
 import { TransactionType, addTransaction, transactionsType } from '../../store/transactionsSlice';
@@ -30,7 +30,7 @@ const schema = yup.object({
   description: yup.string().max(400),
 }).required();
 
-const TransactionsTypeArray = Object.keys(transactionsType).map((key, index) => ({
+export const TransactionsTypeArray = Object.keys(transactionsType).map((key, index) => ({
   label: transactionsType[key as TransactionType],
   id: index,
   value: key

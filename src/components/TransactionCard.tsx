@@ -3,7 +3,7 @@ import { Text, StyleSheet, View, Pressable, Animated } from 'react-native';
 import ReAnimated, { FadeInDown, SlideOutLeft } from 'react-native-reanimated';
 import { Swipeable, GestureHandlerRootView } from 'react-native-gesture-handler';
 
-import { useCurrentTheme } from '../utils/customHooks';
+import useCurrentTheme from '../utils/useCurrentTheme';
 import { SPACING, BORDER_RADIUS, FONT_SIZE, COLORS } from '../attributes';
 import { Transaction, transactionsType } from '../store/transactionsSlice';
 import StyledText from './StyledText';
@@ -63,6 +63,8 @@ const TransactionCard: React.FC<TransactionCardProps> = ({
     swipeCardRef?.current?.close();
     onDeleteTransaction()
   };
+
+  console.log({ ss: new Date(transaction.date).getMonth(), www: new Date().getMonth() })
 
   const handleEditTransaction = () => {
     swipeCardRef?.current?.close();

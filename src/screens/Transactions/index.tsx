@@ -8,7 +8,7 @@ import { useAppDispatch, useTransactionsSelector } from '../../store/hooks';
 import { FloatingButton, TransactionList } from '../../components';
 import { Transaction, removeTransaction } from '../../store/transactionsSlice';
 
-type TransactionsProps = NativeStackScreenProps<RootStackParamList, ROUTES.SYMPTOMS>;
+type TransactionsProps = NativeStackScreenProps<RootStackParamList, ROUTES.TRANSACTIONS>;
 
 function Transactions() {
   const { navigate } = useNavigation<TransactionsProps['navigation']>();
@@ -22,7 +22,7 @@ function Transactions() {
   return (
     <>
       <TransactionList transactions={transactionsEntities} onDeleteTransaction={handleDeleteTransaction} />
-      {Boolean(transactionsEntities.length) && <FloatingButton onClickButton={() => navigate(ROUTES.CREATE_SYMPTOM)} />}
+      {Boolean(transactionsEntities.length) && <FloatingButton onClickButton={() => navigate(ROUTES.CREATE_TRANSACTION)} />}
     </>
   );
 }

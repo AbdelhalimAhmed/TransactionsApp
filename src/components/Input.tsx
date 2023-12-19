@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, TextInput, TextInputProps, StyleSheet } from 'react-native';
-import { BORDER_RADIUS, SPACING, } from '../attributes';
-import { useCurrentTheme } from '../utils/customHooks';
+import { BORDER_RADIUS, COLORS, SPACING, } from '../attributes';
 import StyledText from './StyledText';
 import Animated, { FadeInRight } from 'react-native-reanimated';
 
@@ -19,7 +18,6 @@ const Input: React.FC<InputProps> = ({
   children,
   ...textInputProps
 }) => {
-  const { colors } = useCurrentTheme()
 
   return (
     <Animated.View style={styles.container} entering={FadeInRight.delay(400)}>
@@ -29,7 +27,7 @@ const Input: React.FC<InputProps> = ({
           {label}
         </StyledText>
       }
-      <View style={[styles.inputContainer, { borderColor: colors.border, minHeight: multiline ? 150 : null }]}>
+      <View style={[styles.inputContainer, { minHeight: multiline ? 150 : null }]}>
         {children ||
           <TextInput
             placeholder={placeholder}
@@ -48,6 +46,7 @@ const styles = StyleSheet.create({
     marginBottom: SPACING.xs
   },
   inputContainer: {
+    borderColor: COLORS.border,
     alignSelf: 'stretch',
     borderRadius: BORDER_RADIUS.xs,
     padding: SPACING.m,

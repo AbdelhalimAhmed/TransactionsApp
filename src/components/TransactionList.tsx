@@ -10,7 +10,7 @@ import { Transaction } from '../store/transactionsSlice';
 import ROUTES from '../navigation/routes';
 import { useAppNavigation } from '../navigation/hooks';
 import { SPACING } from '../attributes';
-import { useCurrentTheme } from '../utils/customHooks';
+import useCurrentTheme from '../utils/useCurrentTheme';
 
 interface TransactionListProps {
   transactions?: Transaction[];
@@ -26,7 +26,7 @@ const EmptyList = () => {
       entering={FadeInDown.duration(300)}
       style={styles.noTransactionsContainer}>
       <Ionicons
-        onPress={() => navigate(ROUTES.CREATE_SYMPTOM)}
+        onPress={() => navigate(ROUTES.CREATE_TRANSACTION)}
         name="add-circle"
         suppressHighlighting={true}
         size={44}

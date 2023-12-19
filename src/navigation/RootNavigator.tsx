@@ -3,14 +3,17 @@ import { NativeStackScreenProps, createNativeStackNavigator } from '@react-navig
 import { useNavigation, useTheme } from '@react-navigation/native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
+import ROUTES from './routes';
+import { StyledText } from '../components';
 import Transactions from '../screens/Transactions';
 import CreateTransaction from '../screens/CreateTransaction';
-import ROUTES from './routes';
+import TransactionsSummary from '../screens/TransactionsSummary';
 
 
 export type RootStackParamList = {
   Transactions: undefined;
   CreateTransaction: undefined;
+  TransactionsSummary: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -18,17 +21,31 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 export default function RootNavigator() {
   const { colors } = useTheme();
   return (
-    <Stack.Navigator initialRouteName={ROUTES.SYMPTOMS}>
+    <Stack.Navigator initialRouteName={ROUTES.TRANSACTIONS}>
       <Stack.Screen
-        name={ROUTES.SYMPTOMS}
+        name={ROUTES.TRANSACTIONS}
         component={Transactions}
-        options={{
+        options={({ navigation }) => ({
           headerTitle: 'Your Transactions',
-          headerTintColor: colors.primary
+          headerTintColor: colors.primary,
+          headerRight: () => {
+            return <StyledText color='primary' size='s' onPress={() => navigation.navigate(ROUTES.TRANSACTIONS_SUMMARY)}>Summary</StyledText>
+          }
+        })
+        }
+      />
+      <Stack.Screen
+        name={ROUTES.TRANSACTIONS_SUMMARY}
+        component={TransactionsSummary}
+        options={{
+          headerTitle: 'Monthly Transactions Summary',
+          headerTintColor: colors.primary,
+          presentation: 'modal',
+          statusBarStyle: 'light',
         }}
       />
       <Stack.Screen
-        name={ROUTES.CREATE_SYMPTOM}
+        name={ROUTES.CREATE_TRANSACTION}
         component={CreateTransaction}
         options={({ navigation }) => ({
           headerTitle: 'Create Transaction',
